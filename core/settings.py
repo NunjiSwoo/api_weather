@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # }
 
 MONGO_CONNECTION_STRING = 'mongodb://10.109.2.63:443/'
-MONGO_DATABASE_NAME = 'weather_#RAFAO#NOOB'
+MONGO_DATABASE_NAME = 'weather_renanoliveira'
 
 
 # Password validation
