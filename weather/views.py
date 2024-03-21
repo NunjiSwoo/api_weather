@@ -4,20 +4,30 @@ from django.views import View
 from django.shortcuts import render, redirect
 from .models import WeatherEntity
 from .repositories import WeatherRepository
+from .serializers import WeatherSerializer
 
 class WeatherView(View):
     def get(self, request):
-        repository = WeatherRepository(collectionName='weathers')
+        repository = WeatherRepository(collection_name='weathers')
         weathers = repository.getAll()
-        return render(request, "home.html", {"weathers":weathers})
-    
+        serializer = WeatherSerializer(weathers, many=True)
+        return render(request, "home.html", {"weathers": serializer.data})
+
 class WeatherGenerate(View):
     def get(self, request):
-        repository = WeatherRepository(collectionName='weathers')
-        wheater = {
-            "temperature" : 28,
-            "date": "hoje"
-            }
-        repository.insert(wheater)
+        repository = WeatherRepository(collection_name='weathers')
+        weather = WeatherEntity(
+            temperature=randrange(start=27, stop=38),
+            date=datetime.now()
+        )
+        serializer = WeatherSerializer(data=weather)
+        repository.insert(serializer.data)
 
+        return redirect('Weather View')
+        
+class WeatherReset(View):
+    def get(self, request):
+        repository = WeatherRepository(collection_name='weathers')
+        repository.deleteAll()
+        
         return redirect('Weather View')
