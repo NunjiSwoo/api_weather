@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-!qj8r-2z(z3@p1p7pk))-us1p#j&bax3b2k5=d9e#u7r_ql9#4'
+SECRET_KEY = 'django-insecure-x*(q3p^1)e-&sa@q89judj%=or7f8bht7xr)!qh5ppi*d*345j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework_simplejwt',
     'weather',
-    'djangorestframework',
+    'user',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +58,9 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,13 +79,16 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
+# MONGO_CONNECTION_STRING = "mongodb+srv://ads_user:<password>@clusterads.xmrbktn.mongodb.net/?retryWrites=true&w=majority&appName=ClusterADS"
+MONGO_CONNECTION_STRING = 'mongodb://10.109.2.63:443/'
+MONGO_DATABASE_NAME = 'weather_renan'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
